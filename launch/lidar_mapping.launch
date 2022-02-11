@@ -1,0 +1,15 @@
+<!-- Launch file for naive_motion_predict -->
+<launch>
+  <arg name="new_scan" default="true"/>
+  <arg name="vehicle_radius" default="8.0"/>
+  <arg name="cloud_resolution" default="5000"/>
+
+  <node pkg="lidar_mapping" type="lidar_mapping" name="lidar_mapping" output="screen">
+    <param name="new_scan" value="$(arg new_scan)"/>
+    <param name="vehicle_radius" value="$(arg vehicle_radius)"/>
+    <param name="cloud_resolution" value="$(arg cloud_resolution)"/>
+  </node>
+
+  <node pkg="rviz" type="rviz" name="rviz" output="screen" args="-d $(find lidar_mapping)/rviz/mapping.rviz"/>
+
+</launch>
